@@ -39,6 +39,23 @@ namespace ConwayGOLTests
 
                 Assert.AreEqual(true, cell.IsAlive);
             }
+
+            [Test]
+            public void MultipleBirthCondition()
+            {
+                GameRules rules = new GameRules(new int[] { 2, 3 }, new int[0]);
+                Cell cell = new Cell();
+                Cell[] neighbors = GetCellArray(2);
+
+                rules.RunRules(cell, neighbors);
+                Assert.AreEqual(true, cell.IsAlive);
+
+                cell = new Cell();
+                neighbors = GetCellArray(3);
+
+                rules.RunRules(cell, neighbors);
+                Assert.AreEqual(true, cell.IsAlive);
+            }
         }
     }
 }
