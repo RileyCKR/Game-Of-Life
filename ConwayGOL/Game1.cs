@@ -42,23 +42,7 @@ namespace ConwayGOL
         /// </summary>
         protected override void Initialize()
         {
-            this.Rules = new GameRules(new int[] { 3 }, new int[] { 2, 3 });
-            this.Map = new SimpleMap(10, Rules);
-            Random rng = new Random(1);
-
-            int[] seed = new int[] { 34, 35, 36, 44, 45, 46, 54, 55, 56 };
-            //Seed the map
-            foreach (int index in seed)
-            {
-                Map.CellMap[index].IsAlive = true;
-            }
-
-            //for (int x = 0; x < 50; x++)
-            //{
-            //   int val = rng.Next(0, Map.CellMap.Length);
-            //   Map.CellMap[val].IsAlive = true;
-            //}
-
+            SetupMap();
             base.Initialize();
         }
 
@@ -91,16 +75,17 @@ namespace ConwayGOL
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
-
             OldState = NewState;
             NewState = Keyboard.GetState();
 
             if (NewState.IsKeyDown(Keys.Space) && !OldState.IsKeyDown(Keys.Space))
             {
                 Map.Tick();
+            }
+
+            if (NewState.IsKeyDown(Keys.Escape) && !OldState.IsKeyDown(Keys.Escape))
+            {
+                SetupMap();
             }
 
             base.Update(gameTime);
@@ -133,6 +118,26 @@ namespace ConwayGOL
             spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        private void SetupMap()
+        {
+            this.Rules = new GameRules(new int[] { 3 }, new int[] { 2, 3 });
+            this.Map = new SimpleMap(10, Rules);
+            Random rng = new Random(1);
+
+            int[] seed = new int[] { 34, 35, 36, 44, 45, 46, 54, 55, 56 };
+            //Seed the map
+            foreach (int index in seed)
+            {
+                Map.CellMap[index].IsAlive = true;
+            }
+
+            //for (int x = 0; x < 50; x++)
+            //{
+            //   int val = rng.Next(0, Map.CellMap.Length);
+            //   Map.CellMap[val].IsAlive = true;
+            //}
         }
     }
 }
