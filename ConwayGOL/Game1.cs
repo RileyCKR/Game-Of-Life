@@ -134,21 +134,7 @@ namespace ConwayGOL
         private void SetupMap()
         {
             this.Rules = new GameRules(new int[] { 3 }, new int[] { 2, 3 });
-            this.Map = new SimpleMap(10, Rules);
-            Random rng = new Random(1);
-
-            int[] seed = new int[] { 34, 35, 36, 44, 45, 46, 54, 55, 56 };
-            //Seed the map
-            foreach (int index in seed)
-            {
-                Map.CellMap[index].IsAlive = true;
-            }
-
-            //for (int x = 0; x < 50; x++)
-            //{
-            //   int val = rng.Next(0, Map.CellMap.Length);
-            //   Map.CellMap[val].IsAlive = true;
-            //}
+            this.Map = new SimpleMap(30, Rules);
         }
     }
 }
