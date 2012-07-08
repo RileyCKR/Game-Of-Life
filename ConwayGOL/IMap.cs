@@ -13,5 +13,7 @@ namespace ConwayGOL
         IEnumerable<ICell> Cells { get; }
 
         void Tick();
+
+        void FlipCell(int xRow, int yRow);
     }
 }

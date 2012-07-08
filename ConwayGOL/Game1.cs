@@ -92,6 +92,13 @@ namespace ConwayGOL
                 SetupMap();
             }
 
+            if (InputState.LeftMouseUp())
+            {
+                int xRow = InputState.MousePosition.X / 16;
+                int yRow = InputState.MousePosition.Y / 16;
+                Map.FlipCell(xRow, yRow);
+            }
+
             base.Update(gameTime);
         }
 

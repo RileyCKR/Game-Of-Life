@@ -57,6 +57,12 @@ namespace ConwayGOL
             Generation++;
         }
 
+        public void FlipCell(int xRow, int yRow)
+        {
+            int index = SideSize * yRow + xRow;
+            CellMap[index].IsAlive = !CellMap[index].IsAlive;
+        }
+
         public List<ICell> GetLivingNeighbors(ICell[] map, int xpos, int ypos)
         {
             List<ICell> neighbors = new List<ICell>();
