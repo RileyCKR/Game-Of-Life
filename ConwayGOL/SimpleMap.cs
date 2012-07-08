@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Xna.Framework;
 
 namespace ConwayGOL
 {
@@ -53,14 +54,11 @@ namespace ConwayGOL
         {
             CopyMapToBuffer(CellMap, CellBuffer);
 
-            int effectiveX = 0;
-            int effectiveY = 0;
             for (int index = 0; index < CellMap.Length; index++)
             {
                 ICell cell = CellMap[index];
-                effectiveX = index % SideSize;
-                effectiveY = index / SideSize;
-                Rules.RunRules(cell, GetLivingNeighbors(CellBuffer, effectiveX, effectiveY));
+                Point coords = GetCoordsFromIndex(index);
+                Rules.RunRules(cell, GetLivingNeighbors(CellBuffer, coords));
             }
 
             Generation++;
@@ -89,15 +87,15 @@ namespace ConwayGOL
             CellMap[index].IsAlive = !CellMap[index].IsAlive;
         }
 
-        public List<ICell> GetLivingNeighbors(ICell[] map, int xpos, int ypos)
+        public List<ICell> GetLivingNeighbors(ICell[] map, Point cellCoords)
         {
             List<ICell> neighbors = new List<ICell>();
-            int index = (ypos * SideSize) + xpos;
+            int index = GetIndexFromCoords(cellCoords.X, cellCoords.Y);
 
             ICell cell;
-            if (ypos != 0)
+            if (cellCoords.Y != 0)
             {
-                if (xpos != 0)
+                if (cellCoords.X != 0)
                 {
                     cell = map[index - SideSize - 1];
                     if (cell.IsAlive) neighbors.Add(cell);
@@ -106,28 +104,28 @@ namespace ConwayGOL
                 cell = map[index - SideSize];
                 if (cell.IsAlive) neighbors.Add(cell);
 
-                if (xpos != SideSize - 1)
+                if (cellCoords.X != SideSize - 1)
                 {
                     cell = map[index - SideSize + 1];
                     if (cell.IsAlive) neighbors.Add(cell);
                 }
             }
 
-            if (xpos != 0)
+            if (cellCoords.X != 0)
             {
                 cell = map[index - 1];
                 if (cell.IsAlive) neighbors.Add(cell);
             }
 
-            if (xpos != SideSize - 1)
+            if (cellCoords.X != SideSize - 1)
             {
                 cell = map[index + 1];
                 if (cell.IsAlive) neighbors.Add(cell);
             }
 
-            if (ypos != SideSize - 1)
+            if (cellCoords.Y != SideSize - 1)
             {
-                if (xpos != 0)
+                if (cellCoords.X != 0)
                 {
                     cell = map[index + SideSize - 1];
                     if (cell.IsAlive) neighbors.Add(cell);
@@ -136,7 +134,7 @@ namespace ConwayGOL
                 cell = map[index + SideSize];
                 if (cell.IsAlive) neighbors.Add(cell);
 
-                if (xpos != SideSize - 1)
+                if (cellCoords.X != SideSize - 1)
                 {
                     cell = map[index + SideSize + 1];
                     if (cell.IsAlive) neighbors.Add(cell);
@@ -159,6 +157,11 @@ namespace ConwayGOL
         private int GetIndexFromCoords(int xRow, int yRow)
         {
             return SideSize * yRow + xRow;
+        }
+
+        private Point GetCoordsFromIndex(int index)
+        {
+            return new Point(index % SideSize, index / SideSize);
         }
     }
 }
