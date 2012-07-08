@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cell.cs" />
+    <Compile Include="GameTextures.cs" />
     <Compile Include="ICell.cs" />
     <Compile Include="IMap.cs" />
     <Compile Include="GameRules.cs" />

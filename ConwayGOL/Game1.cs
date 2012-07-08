@@ -23,9 +23,6 @@ namespace ConwayGOL
         GameRules Rules { get; set; }
         SimpleMap Map { get; set; }
 
-        Texture2D CellOnTexture;
-        Texture2D CellOffTexture;
-
         KeyboardState OldState = Keyboard.GetState();
         KeyboardState NewState = Keyboard.GetState();
 
@@ -54,11 +51,8 @@ namespace ConwayGOL
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            CellOffTexture = this.Content.Load<Texture2D>("CellOff");
-            CellOnTexture = this.Content.Load<Texture2D>("CellOn");
+            GameTextures.Load(this.Content);
         }
 
         /// <summary>
@@ -112,19 +106,7 @@ namespace ConwayGOL
 
             spriteBatch.Begin();
 
-            foreach (ICell cell in Map.CellMap)
-            {
-                Vector2 location = new Vector2(cell.XPos * 16, cell.YPos * 16);
-
-                if (cell.IsAlive)
-                {
-                    spriteBatch.Draw(CellOnTexture, location, null, Color.White);
-                }
-                else
-                {
-                    spriteBatch.Draw(CellOffTexture, location, null, Color.White);
-                }
-            }
+            Map.Draw(spriteBatch);
 
             spriteBatch.End();
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace ConwayGOL
 {
@@ -15,7 +16,7 @@ namespace ConwayGOL
         /// </summary>
         public int Generation { get; private set; }
 
-        public ICell[] CellMap { get; private set; }
+        private ICell[] CellMap;
 
         private ICell[] CellBuffer;
 
@@ -162,6 +163,23 @@ namespace ConwayGOL
         private Point GetCoordsFromIndex(int index)
         {
             return new Point(index % SideSize, index / SideSize);
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            foreach (ICell cell in CellMap)
+            {
+                Vector2 location = new Vector2(cell.XPos * 16, cell.YPos * 16);
+
+                if (cell.IsAlive)
+                {
+                    spriteBatch.Draw(GameTextures.CellAlive, location, null, Color.White);
+                }
+                else
+                {
+                    spriteBatch.Draw(GameTextures.CellDead, location, null, Color.White);
+                }
+            }
         }
     }
 }
