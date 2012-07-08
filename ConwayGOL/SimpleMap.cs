@@ -7,14 +7,20 @@ namespace ConwayGOL
     /// <summary>
     /// Simple fixed size map
     /// </summary>
-    public class SimpleMap //: IMap
+    public class SimpleMap : IMap
     {
+        /// <summary>
+        /// Number of Ticks that have elapsed
+        /// </summary>
         public int Generation { get; private set; }
 
         public ICell[] CellMap { get; private set; }
 
         private ICell[] CellBuffer;
 
+        /// <summary>
+        /// Rules that will be used on the cells
+        /// </summary>
         public GameRules Rules { get; private set; }
 
         public int SideSize { get; private set; }
@@ -40,6 +46,9 @@ namespace ConwayGOL
             }
         }
 
+        /// <summary>
+        /// Runs the rules on all cells, advancing the game by one generation.
+        /// </summary>
         public void Tick()
         {
             CopyMapToBuffer(CellMap, CellBuffer);
@@ -57,9 +66,26 @@ namespace ConwayGOL
             Generation++;
         }
 
+        /// <summary>
+        /// Gets the cell at the given coordinates
+        /// </summary>
+        /// <param name="xRow"></param>
+        /// <param name="yRow"></param>
+        /// <returns></returns>
+        public ICell GetCell(int xRow, int yRow)
+        {
+            int index = GetIndexFromCoords(xRow, yRow);
+            return CellMap[index];
+        }
+
+        /// <summary>
+        /// Flips the living status of the cell at the given coordinates
+        /// </summary>
+        /// <param name="xRow"></param>
+        /// <param name="yRow"></param>
         public void FlipCell(int xRow, int yRow)
         {
-            int index = SideSize * yRow + xRow;
+            int index = GetIndexFromCoords(xRow, yRow);
             CellMap[index].IsAlive = !CellMap[index].IsAlive;
         }
 
@@ -128,6 +154,11 @@ namespace ConwayGOL
                 ICell bCell = buffer[index];
                 bCell.IsAlive = sCell.IsAlive;
             }
+        }
+
+        private int GetIndexFromCoords(int xRow, int yRow)
+        {
+            return SideSize * yRow + xRow;
         }
     }
 }

@@ -10,10 +10,10 @@ namespace ConwayGOL
     {
         int Generation { get; }
 
-        IEnumerable<ICell> Cells { get; }
-
         void Tick();
 
         void FlipCell(int xRow, int yRow);
+
+        ICell GetCell(int xRow, int yRow);
     }
 }
