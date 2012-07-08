@@ -19,6 +19,7 @@ namespace ConwayGOL
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        InputState InputState = new InputState();
         GameRules Rules { get; set; }
         SimpleMap Map { get; set; }
 
@@ -32,6 +33,7 @@ namespace ConwayGOL
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            IsMouseVisible = true;
         }
 
         /// <summary>
@@ -75,15 +77,17 @@ namespace ConwayGOL
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            InputState.Update();
+
             OldState = NewState;
             NewState = Keyboard.GetState();
 
-            if (NewState.IsKeyDown(Keys.Space) && !OldState.IsKeyDown(Keys.Space))
+            if (InputState.KeyDown(Keys.Space))
             {
                 Map.Tick();
             }
 
-            if (NewState.IsKeyDown(Keys.Escape) && !OldState.IsKeyDown(Keys.Escape))
+            if (InputState.KeyDown(Keys.Escape))
             {
                 SetupMap();
             }
