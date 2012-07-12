@@ -20,12 +20,7 @@ namespace ConwayGOL
         SpriteBatch spriteBatch;
 
         SimulationGameState SimulationState;
-        InputState InputState = new InputState();
-        GameRules Rules { get; set; }
-        SimpleMap Map { get; set; }
-
-        KeyboardState OldState = Keyboard.GetState();
-        KeyboardState NewState = Keyboard.GetState();
+        InputState InputState;
 
         public Game1()
         {
@@ -42,6 +37,7 @@ namespace ConwayGOL
         /// </summary>
         protected override void Initialize()
         {
+            InputState = new InputState();
             SimulationState = new SimulationGameState();
             SimulationState.Initialize();
 
