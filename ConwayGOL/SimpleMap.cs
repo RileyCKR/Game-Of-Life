@@ -167,20 +167,13 @@ namespace ConwayGOL
 
         public void Draw(SpriteBatch spriteBatch, Rectangle camera)
         {
+            Point offset = camera.Location;
             foreach (ICell cell in CellMap)
             {
-                Point offset = camera.Location;
-
                 Vector2 location = new Vector2(offset.X + (cell.XPos * 16), offset.Y + (cell.YPos * 16));
 
-                if (cell.IsAlive)
-                {
-                    spriteBatch.Draw(GameTextures.CellAlive, location, null, Color.White);
-                }
-                else
-                {
-                    spriteBatch.Draw(GameTextures.CellDead, location, null, Color.White);
-                }
+                Texture2D texture = cell.IsAlive ? GameTextures.CellAlive : GameTextures.CellDead;
+                spriteBatch.Draw(texture, location, null, Color.White);
             }
         }
     }
