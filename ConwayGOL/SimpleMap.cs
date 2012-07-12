@@ -165,11 +165,13 @@ namespace ConwayGOL
             return new Point(index % SideSize, index / SideSize);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, Rectangle camera)
         {
             foreach (ICell cell in CellMap)
             {
-                Vector2 location = new Vector2(cell.XPos * 16, cell.YPos * 16);
+                Point offset = camera.Location;
+
+                Vector2 location = new Vector2(offset.X + (cell.XPos * 16), offset.Y + (cell.YPos * 16));
 
                 if (cell.IsAlive)
                 {
