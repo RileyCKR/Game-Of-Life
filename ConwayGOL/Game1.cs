@@ -115,7 +115,7 @@ namespace ConwayGOL
 
         private void SetupMap()
         {
-            this.Rules = new GameRules(new int[] { 3 }, new int[] { 2, 3 });
+            this.Rules = GameRules.Standard();
             this.Map = new SimpleMap(30, Rules);
         }
     }

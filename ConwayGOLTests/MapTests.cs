@@ -10,21 +10,18 @@ namespace ConwayGOLTests
     [TestFixture]
     public class MapTests
     {
-        //TODO: Add static methods to create common rulesets
-        GameRules rules = new GameRules(new int[] { 3 }, new int[] { 2, 3 });
-
         //TODO: Expand tick method testing
         [Test]
         public void Tick()
         {
-            SimpleMap map = new SimpleMap(2, rules);
+            SimpleMap map = new SimpleMap(2, GameRules.Standard());
             map.Tick();
         }
 
         [Test]
         public void GetCell()
         {
-            SimpleMap map = new SimpleMap(2, rules);
+            SimpleMap map = new SimpleMap(2, GameRules.Standard());
             Assert.AreEqual(0, map.GetCell(0, 0).XPos);
             Assert.AreEqual(0, map.GetCell(0, 0).YPos);
 
@@ -41,7 +38,7 @@ namespace ConwayGOLTests
         [Test]
         public void FlipCell()
         {
-            SimpleMap map = new SimpleMap(2, rules);
+            SimpleMap map = new SimpleMap(2, GameRules.Standard());
             map.FlipCell(0, 0);
             map.FlipCell(1, 0);
 

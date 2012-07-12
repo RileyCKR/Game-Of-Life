@@ -12,13 +12,6 @@ namespace ConwayGOLTests
         [TestFixture]
         public class RunRulesMethod
         {
-            public GameRules GetConwayClassicRules()
-            {
-                int[] birthRules = new int[] { 3 };
-                int[] stableRules = new int[] { 2, 3 };
-                return new GameRules(birthRules, stableRules);
-            }
-
             public Cell[] GetCellArray(int count)
             {
                 Cell[] array = new Cell[count];
@@ -35,7 +28,7 @@ namespace ConwayGOLTests
                 Cell cell = new Cell();
                 Cell[] neighbors = GetCellArray(3);
 
-                GetConwayClassicRules().RunRules(cell, neighbors);
+                GameRules.Standard().RunRules(cell, neighbors);
 
                 Assert.AreEqual(true, cell.IsAlive);
             }
@@ -55,6 +48,34 @@ namespace ConwayGOLTests
 
                 rules.RunRules(cell, neighbors);
                 Assert.AreEqual(true, cell.IsAlive);
+            }
+        }
+
+        [TestFixture]
+        public class Constructor
+        {
+            [Test]
+            public void SetsRules()
+            {
+                int[] birthCondition = new int[] { 2, 4, 6 };
+                int[] stableCondition = new int[] { 2, 3, 5 };
+                GameRules rules = new GameRules(birthCondition, stableCondition);
+                
+                Assert.AreEqual(birthCondition, rules.BirthRules);
+                Assert.AreEqual(stableCondition, rules.StableRules);
+            }
+        }
+
+        [TestFixture]
+        public class StandardRulesGetter
+        {
+            [Test]
+            public void HasCorrectRules()
+            {
+                GameRules rules = GameRules.Standard();
+
+                Assert.AreEqual(new int[] { 3 }, rules.BirthRules);
+                Assert.AreEqual(new int[] { 2, 3 }, rules.StableRules);
             }
         }
     }
