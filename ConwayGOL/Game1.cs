@@ -19,6 +19,7 @@ namespace ConwayGOL
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        SimulationGameState SimulationState;
         InputState InputState = new InputState();
         GameRules Rules { get; set; }
         SimpleMap Map { get; set; }
@@ -41,7 +42,9 @@ namespace ConwayGOL
         /// </summary>
         protected override void Initialize()
         {
-            SetupMap();
+            SimulationState = new SimulationGameState();
+            SimulationState.Initialize();
+
             base.Initialize();
         }
 
@@ -73,25 +76,7 @@ namespace ConwayGOL
         {
             InputState.Update();
 
-            OldState = NewState;
-            NewState = Keyboard.GetState();
-
-            if (InputState.KeyDown(Keys.Space))
-            {
-                Map.Tick();
-            }
-
-            if (InputState.KeyDown(Keys.Escape))
-            {
-                SetupMap();
-            }
-
-            if (InputState.LeftMouseUp())
-            {
-                int xRow = InputState.MousePosition.X / 16;
-                int yRow = InputState.MousePosition.Y / 16;
-                Map.FlipCell(xRow, yRow);
-            }
+            SimulationState.Update(gameTime, InputState);
 
             base.Update(gameTime);
         }
@@ -106,17 +91,11 @@ namespace ConwayGOL
 
             spriteBatch.Begin();
 
-            Map.Draw(spriteBatch);
+            SimulationState.Draw(gameTime, spriteBatch);
 
             spriteBatch.End();
 
             base.Draw(gameTime);
-        }
-
-        private void SetupMap()
-        {
-            this.Rules = GameRules.Standard();
-            this.Map = new SimpleMap(30, Rules);
         }
     }
 }
