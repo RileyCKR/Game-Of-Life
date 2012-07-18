@@ -1,6 +1,6 @@
 using System;
 
-namespace ConwayGOL
+namespace GameOfLife
 {
 #if WINDOWS || XBOX
     static class Program

@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-namespace ConwayGOL
+namespace GameOfLife
 {
     /// <summary>
     /// Manages state for all input devices.
