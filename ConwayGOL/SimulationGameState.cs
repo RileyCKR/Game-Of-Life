@@ -23,7 +23,7 @@ namespace ConwayGOL
         Rectangle Camera;
         Game Game;
         int Ticks = 0;
-        int TickRate = 60;
+        int TickRate = 10;
         GameState State = GameState.Paused;
 
         public SimulationGameState(Game game)
@@ -111,6 +111,13 @@ namespace ConwayGOL
         {
             GameRules rules = GameRules.Standard();
             this.Map = new SimpleMap(30, rules);
+            this.State = GameState.Paused;
+            this.Map.FlipCell(14, 12);
+            this.Map.FlipCell(15, 12);
+            this.Map.FlipCell(13, 13);
+            this.Map.FlipCell(14, 13);
+            this.Map.FlipCell(14, 14);
+
         }
     }
 }
