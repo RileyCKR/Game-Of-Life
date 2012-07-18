@@ -50,7 +50,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ConwayGOL\GameOfLife.csproj">
+    <ProjectReference Include="..\GameOfLife\GameOfLife.csproj">
       <Project>{4167A910-454C-4F72-99F3-F1B6E17EEDBA}</Project>
       <Name>GameOfLife</Name>
     </ProjectReference>
