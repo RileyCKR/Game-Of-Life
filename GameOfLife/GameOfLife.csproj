@@ -125,13 +125,6 @@
     <Content Include="GameThumbnail.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ConwayGOLContent\GameOfLifeContent.contentproj">
-      <Name>ConwayGOLContent %28Content%29</Name>
-      <XnaReferenceType>Content</XnaReferenceType>
-      <Project>{5B944B7A-EB61-4285-9180-DBC74EC9766A}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
@@ -157,6 +150,13 @@
       <ProductName>Microsoft XNA Framework Redistributable 4.0</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GameOfLifeContent\GameOfLifeContent.contentproj">
+      <Project>{5B944B7A-EB61-4285-9180-DBC74EC9766A}</Project>
+      <Name>GameOfLifeContent %28Content%29</Name>
+      <XnaReferenceType>Content</XnaReferenceType>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
