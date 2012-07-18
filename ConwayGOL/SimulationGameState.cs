@@ -19,7 +19,7 @@ namespace ConwayGOL
             Playing
         }
 
-        SimpleMap Map { get; set; }
+        IMap Map { get; set; }
         Rectangle Camera;
         Game Game;
         int Ticks = 0;
@@ -110,7 +110,7 @@ namespace ConwayGOL
         private void SetupMap()
         {
             GameRules rules = GameRules.Standard();
-            this.Map = new SimpleMap(30, rules);
+            this.Map = new InfiniteMap(rules);
             this.State = GameState.Paused;
             this.Map.FlipCell(14, 12);
             this.Map.FlipCell(15, 12);

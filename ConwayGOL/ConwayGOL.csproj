@@ -112,6 +112,7 @@
     <Compile Include="ICell.cs" />
     <Compile Include="IMap.cs" />
     <Compile Include="GameRules.cs" />
+    <Compile Include="InfiniteMap.cs" />
     <Compile Include="InputState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
