@@ -70,7 +70,10 @@ namespace ConwayGOL
                 {
                     int xRow = inputState.MousePosition.X / 16;
                     int yRow = inputState.MousePosition.Y / 16;
-                    Map.FlipCell(xRow, yRow);
+                    Point cellPoint = new Point(Camera.Location.X / 16, Camera.Location.Y / 16);
+                    cellPoint.X = cellPoint.X + xRow;
+                    cellPoint.Y = cellPoint.Y + yRow;
+                    Map.FlipCell(cellPoint.X, cellPoint.Y);
                 }
             }
         }

@@ -84,8 +84,18 @@ namespace ConwayGOL
         /// <param name="yRow"></param>
         public void FlipCell(int xRow, int yRow)
         {
-            int index = GetIndexFromCoords(xRow, yRow);
-            CellMap[index].IsAlive = !CellMap[index].IsAlive;
+            if (xRow >= 0 && 
+                xRow < SideSize && 
+                yRow >= 0 &&
+                yRow < SideSize)
+            {
+                int index = GetIndexFromCoords(xRow, yRow);
+                CellMap[index].IsAlive = !CellMap[index].IsAlive;
+            }
+            else
+            {
+                //Out of bounds, do nothing
+            }
         }
 
         public List<ICell> GetLivingNeighbors(ICell[] map, Point cellCoords)
