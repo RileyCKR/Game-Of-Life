@@ -8,7 +8,7 @@
     <ProjectGuid>{7C919724-D9AB-4C2F-9543-30D61A90C177}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ConwayGOLTests</RootNamespace>
+    <RootNamespace>GameOfLifeTests</RootNamespace>
     <AssemblyName>ConwayGOLTests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

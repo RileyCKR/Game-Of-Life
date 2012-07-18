@@ -5,7 +5,7 @@ using System.Text;
 using NUnit.Framework;
 using GameOfLife;
 
-namespace ConwayGOLTests
+namespace GameOfLifeTests
 {
     public class GameRulesTests
     {
