@@ -8,8 +8,8 @@
     <ProjectGuid>{7C919724-D9AB-4C2F-9543-30D61A90C177}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ConwayGOLTests</RootNamespace>
-    <AssemblyName>ConwayGOLTests</AssemblyName>
+    <RootNamespace>GameOfLifeTests</RootNamespace>
+    <AssemblyName>GameOfLifeTests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -50,9 +50,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ConwayGOL\ConwayGOL.csproj">
+    <ProjectReference Include="..\GameOfLife\GameOfLife.csproj">
       <Project>{4167A910-454C-4F72-99F3-F1B6E17EEDBA}</Project>
-      <Name>ConwayGOL</Name>
+      <Name>GameOfLife</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

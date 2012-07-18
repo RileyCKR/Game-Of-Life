@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
-using ConwayGOL;
+using GameOfLife;
 
-namespace ConwayGOLTests
+namespace GameOfLifeTests
 {
     public class GameRulesTests
     {

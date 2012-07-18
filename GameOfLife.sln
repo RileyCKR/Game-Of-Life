@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConwayGOL", "ConwayGOL\ConwayGOL.csproj", "{4167A910-454C-4F72-99F3-F1B6E17EEDBA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameOfLife", "GameOfLife\GameOfLife.csproj", "{4167A910-454C-4F72-99F3-F1B6E17EEDBA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConwayGOLContent", "ConwayGOLContent\ConwayGOLContent.contentproj", "{5B944B7A-EB61-4285-9180-DBC74EC9766A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameOfLifeContent", "GameOfLifeContent\GameOfLifeContent.contentproj", "{5B944B7A-EB61-4285-9180-DBC74EC9766A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConwayGOLTests", "ConwayGOLTests\ConwayGOLTests.csproj", "{7C919724-D9AB-4C2F-9543-30D61A90C177}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameOfLifeTests", "GameOfLifeTests\GameOfLifeTests.csproj", "{7C919724-D9AB-4C2F-9543-30D61A90C177}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
