@@ -65,7 +65,6 @@ namespace GameOfLife
                     SetupMap();
                 }
 
-                //TODO: Why are the left and right offsets flipped from what I expect them to be?
                 if (inputState.KeyDown(Keys.Left))
                 {
                     Camera.Offset(new Point(-16, 0));
