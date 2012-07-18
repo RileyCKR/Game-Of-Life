@@ -10,26 +10,7 @@ namespace GameOfLife
     {
         public Point Location { get; private set; }
 
-        private bool _IsAlive;
-        public bool IsAlive
-        {
-            get { return _IsAlive; }
-            set
-            {
-                if (_IsAlive != value)
-                {
-                    if (_IsAlive)
-                    {
-                        //Reset counter when killing the cell
-                        Generation = 0;
-                    }
-
-                    _IsAlive = value;
-                }
-            }
-        }
-
-        public int Generation { get; private set; }
+        public bool IsAlive { get; set; }
 
         public Cell()
         {
@@ -39,14 +20,6 @@ namespace GameOfLife
         {
             this.Location = location;
             this.IsAlive = isAlive;
-        }
-
-        public void Tick()
-        {
-            if (IsAlive)
-            {
-                Generation++;
-            }
         }
     }
 }

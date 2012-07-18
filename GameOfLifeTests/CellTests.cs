@@ -15,20 +15,12 @@ namespace GameOfLifeTests
         public class Constructor
         {
             [Test]
-            public void SetsXPos()
+            public void SetsLocation()
             {
-                Point location = new Point(10, 0);
+                Point location = new Point(10, 15);
                 bool isAlive = false;
                 Cell cell = new Cell(location, isAlive);
                 Assert.AreEqual(location.X, cell.Location.X);
-            }
-
-            [Test]
-            public void SetsYPos()
-            {
-                Point location = new Point(0, 10);
-                bool isAlive = false;
-                Cell cell = new Cell(location, isAlive);
                 Assert.AreEqual(location.Y, cell.Location.Y);
             }
 
@@ -39,53 +31,6 @@ namespace GameOfLifeTests
                 bool isAlive = true;
                 Cell cell = new Cell(location, isAlive);
                 Assert.AreEqual(isAlive, cell.IsAlive);
-            }
-        }
-
-        [TestFixture]
-        public class TickMethod
-        {
-            [Test]
-            public void TickLivingIncrementsGeneration()
-            {
-                Cell cell = new Cell();
-                cell.IsAlive = true;
-                cell.Tick();
-                Assert.AreEqual(1, cell.Generation);
-                cell.Tick();
-                Assert.AreEqual(2, cell.Generation);
-            }
-
-            [Test]
-            public void TickDeadDoesNothing()
-            {
-                Cell cell = new Cell();
-                cell.Tick();
-                Assert.AreEqual(0, cell.Generation);
-            }
-        }
-
-        [TestFixture]
-        public class IsAliveGetter
-        {
-            [Test]
-            public void SetAliveDoesNotBeginGeneration()
-            {
-                Cell cell = new Cell();
-                cell.IsAlive = true;
-                Assert.AreEqual(0, cell.Generation);
-            }
-
-            [Test]
-            public void KillCellResetsGeneration()
-            {
-                Cell cell = new Cell();
-                cell.IsAlive = true;
-                cell.Tick();
-                cell.Tick();
-                cell.Tick();
-                cell.IsAlive = false;
-                Assert.AreEqual(0, cell.Generation);
             }
         }
     }

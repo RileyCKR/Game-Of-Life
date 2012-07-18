@@ -10,9 +10,5 @@ namespace GameOfLife
     {
         Point Location { get; }
         bool IsAlive { get; set; }
-
-        int Generation { get; }
-
-        void Tick();
     }
 }
