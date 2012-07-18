@@ -126,8 +126,9 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ConwayGOLContent\ConwayGOLContent.contentproj">
-      <Name>ConwayGOLContent</Name>
+      <Name>ConwayGOLContent %28Content%29</Name>
       <XnaReferenceType>Content</XnaReferenceType>
+      <Project>{5B944B7A-EB61-4285-9180-DBC74EC9766A}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
