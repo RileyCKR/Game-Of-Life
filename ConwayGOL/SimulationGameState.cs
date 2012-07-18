@@ -15,9 +15,11 @@ namespace ConwayGOL
     {
         SimpleMap Map { get; set; }
         Rectangle Camera;
+        Game Game;
 
-        public SimulationGameState()
+        public SimulationGameState(Game game)
         {
+            this.Game = game;
         }
 
         public void Initialize()
@@ -33,40 +35,43 @@ namespace ConwayGOL
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public void Update(GameTime gameTime, InputState inputState)
         {
-            if (inputState.KeyDown(Keys.Space))
+            if (this.Game.IsActive)
             {
-                Map.Tick();
-            }
+                if (inputState.KeyDown(Keys.Space))
+                {
+                    Map.Tick();
+                }
 
-            if (inputState.KeyDown(Keys.Escape))
-            {
-                SetupMap();
-            }
+                if (inputState.KeyDown(Keys.Escape))
+                {
+                    SetupMap();
+                }
 
-            //TODO: Why are the left and right offsets flipped from what I expect them to be?
-            if (inputState.KeyDown(Keys.Left))
-            {
-                Camera.Offset(new Point(-16, 0));
-            }
-            else if (inputState.KeyDown(Keys.Right))
-            {
-                Camera.Offset(new Point(16, 0));
-            }
+                //TODO: Why are the left and right offsets flipped from what I expect them to be?
+                if (inputState.KeyDown(Keys.Left))
+                {
+                    Camera.Offset(new Point(-16, 0));
+                }
+                else if (inputState.KeyDown(Keys.Right))
+                {
+                    Camera.Offset(new Point(16, 0));
+                }
 
-            if (inputState.KeyDown(Keys.Up))
-            {
-                Camera.Offset(new Point(0, -16));
-            }
-            else if (inputState.KeyDown(Keys.Down))
-            {
-                Camera.Offset(new Point(0, 16));
-            }
+                if (inputState.KeyDown(Keys.Up))
+                {
+                    Camera.Offset(new Point(0, -16));
+                }
+                else if (inputState.KeyDown(Keys.Down))
+                {
+                    Camera.Offset(new Point(0, 16));
+                }
 
-            if (inputState.LeftMouseUp())
-            {
-                int xRow = inputState.MousePosition.X / 16;
-                int yRow = inputState.MousePosition.Y / 16;
-                Map.FlipCell(xRow, yRow);
+                if (inputState.LeftMouseUp())
+                {
+                    int xRow = inputState.MousePosition.X / 16;
+                    int yRow = inputState.MousePosition.Y / 16;
+                    Map.FlipCell(xRow, yRow);
+                }
             }
         }
 

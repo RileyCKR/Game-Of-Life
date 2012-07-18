@@ -40,7 +40,7 @@ namespace ConwayGOL
         protected override void Initialize()
         {
             InputState = new InputState();
-            SimulationState = new SimulationGameState();
+            SimulationState = new SimulationGameState(this);
             SimulationState.Initialize();
 
             base.Initialize();
