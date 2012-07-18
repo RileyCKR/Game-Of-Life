@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
 
 namespace GameOfLife
 {
     public class Cell : ICell
     {
-        public int XPos { get; private set; }
-
-        public int YPos { get; private set; }
+        public Point Location { get; private set; }
 
         private bool _IsAlive;
         public bool IsAlive
@@ -36,10 +35,9 @@ namespace GameOfLife
         {
         }
 
-        public Cell(int xpos, int ypos, bool isAlive)
+        public Cell(Point location, bool isAlive)
         {
-            this.XPos = xpos;
-            this.YPos = ypos;
+            this.Location = location;
             this.IsAlive = isAlive;
         }
 

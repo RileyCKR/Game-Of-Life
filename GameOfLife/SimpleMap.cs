@@ -36,15 +36,14 @@ namespace GameOfLife
             CellMap = new Cell[arraySize];
             CellBuffer = new Cell[arraySize];
 
-            int effectiveX;
-            int effectiveY;
+            Point point;
             for (int x = 0; x < arraySize; x++)
             {
                 //Translate x/y coordinates into 1Dimensional array index
-                effectiveX = x % SideSize;
-                effectiveY = x / SideSize;
-                CellMap[x] = new Cell(effectiveX, effectiveY, false);
-                CellBuffer[x] = new Cell(effectiveX, effectiveY, false);
+                point.X = x % SideSize;
+                point.Y = x / SideSize;
+                CellMap[x] = new Cell(point, false);
+                CellBuffer[x] = new Cell(point, false);
             }
         }
 
@@ -180,7 +179,7 @@ namespace GameOfLife
             Point offset = new Point(-camera.Location.X, -camera.Location.Y);
             foreach (ICell cell in CellMap)
             {
-                Vector2 location = new Vector2(offset.X + (cell.XPos * 16), offset.Y + (cell.YPos * 16));
+                Vector2 location = new Vector2(offset.X + (cell.Location.X * 16), offset.Y + (cell.Location.Y * 16));
 
                 Texture2D texture = cell.IsAlive ? GameTextures.CellAlive : GameTextures.CellDead;
                 spriteBatch.Draw(texture, location, null, Color.White);

@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
 
 namespace GameOfLife
 {
     public interface ICell
     {
-        int XPos { get; }
-        int YPos { get; }
+        Point Location { get; }
         bool IsAlive { get; set; }
 
         int Generation { get; }
 
         void Tick();
-
     }
 }

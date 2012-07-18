@@ -36,7 +36,7 @@ namespace GameOfLife
                 if (cell.IsAlive)
                 {
                     livingCells.Add(cell);
-                    CellBuffer.Add(new Point(cell.XPos, cell.YPos), new Cell(cell.XPos, cell.YPos, cell.IsAlive));
+                    CellBuffer.Add(cell.Location, new Cell(cell.Location, cell.IsAlive));
                 }
             }
 
@@ -47,60 +47,60 @@ namespace GameOfLife
                 ICell neighbor;
 
                 //Top Left
-                key.X = cell.XPos - 1;
-                key.Y = cell.YPos - 1;
+                key.X = cell.Location.X - 1;
+                key.Y = cell.Location.Y - 1;
                 if (!CellBuffer.TryGetValue(key, out neighbor))
                 {
-                    CellBuffer.Add(key, new Cell(key.X, key.Y, false));
+                    CellBuffer.Add(key, new Cell(key, false));
                 }
                 //Top Center
-                key.X = cell.XPos;
-                key.Y = cell.YPos - 1;
+                key.X = cell.Location.X;
+                key.Y = cell.Location.Y - 1;
                 if (!CellBuffer.TryGetValue(key, out neighbor))
                 {
-                    CellBuffer.Add(key, new Cell(key.X, key.Y, false));
+                    CellBuffer.Add(key, new Cell(key, false));
                 }
                 //Top Right
-                key.X = cell.XPos + 1;
-                key.Y = cell.YPos - 1;
+                key.X = cell.Location.X + 1;
+                key.Y = cell.Location.Y - 1;
                 if (!CellBuffer.TryGetValue(key, out neighbor))
                 {
-                    CellBuffer.Add(key, new Cell(key.X, key.Y, false));
+                    CellBuffer.Add(key, new Cell(key, false));
                 }
                 //Left
-                key.X = cell.XPos - 1;
-                key.Y = cell.YPos;
+                key.X = cell.Location.X - 1;
+                key.Y = cell.Location.Y;
                 if (!CellBuffer.TryGetValue(key, out neighbor))
                 {
-                    CellBuffer.Add(key, new Cell(key.X, key.Y, false));
+                    CellBuffer.Add(key, new Cell(key, false));
                 }
                 //Right
-                key.X = cell.XPos + 1;
-                key.Y = cell.YPos;
+                key.X = cell.Location.X + 1;
+                key.Y = cell.Location.Y;
                 if (!CellBuffer.TryGetValue(key, out neighbor))
                 {
-                    CellBuffer.Add(key, new Cell(key.X, key.Y, false));
+                    CellBuffer.Add(key, new Cell(key, false));
                 }
                 //Bottom Left
-                key.X = cell.XPos - 1;
-                key.Y = cell.YPos + 1;
+                key.X = cell.Location.X - 1;
+                key.Y = cell.Location.Y + 1;
                 if (!CellBuffer.TryGetValue(key, out neighbor))
                 {
-                    CellBuffer.Add(key, new Cell(key.X, key.Y, false));
+                    CellBuffer.Add(key, new Cell(key, false));
                 }
                 //Bottom Center
-                key.X = cell.XPos;
-                key.Y = cell.YPos + 1;
+                key.X = cell.Location.X;
+                key.Y = cell.Location.Y + 1;
                 if (!CellBuffer.TryGetValue(key, out neighbor))
                 {
-                    CellBuffer.Add(key, new Cell(key.X, key.Y, false));
+                    CellBuffer.Add(key, new Cell(key, false));
                 }
                 //Bottom Right
-                key.X = cell.XPos + 1;
-                key.Y = cell.YPos + 1;
+                key.X = cell.Location.X + 1;
+                key.Y = cell.Location.Y + 1;
                 if (!CellBuffer.TryGetValue(key, out neighbor))
                 {
-                    CellBuffer.Add(key, new Cell(key.X, key.Y, false));
+                    CellBuffer.Add(key, new Cell(key, false));
                 }
             }
 
@@ -132,7 +132,7 @@ namespace GameOfLife
             }
             else
             {
-                Cells.Add(point, new Cell(point.X, point.Y, false));
+                Cells.Add(point, new Cell(point, false));
                 return Cells[point];
             }
         }
@@ -142,7 +142,7 @@ namespace GameOfLife
             Point offset = new Point(-camera.Location.X, -camera.Location.Y);
             foreach (ICell cell in Cells.Values)
             {
-                Vector2 location = new Vector2(offset.X + (cell.XPos * 16), offset.Y + (cell.YPos * 16));
+                Vector2 location = new Vector2(offset.X + (cell.Location.X * 16), offset.Y + (cell.Location.Y * 16));
 
                 Texture2D texture = cell.IsAlive ? GameTextures.CellAlive : GameTextures.CellDead;
                 spriteBatch.Draw(texture, location, null, Color.White);
@@ -222,9 +222,8 @@ namespace GameOfLife
             Cells.Clear();
             foreach (ICell cell in CellBuffer.Values)
             {
-                Cells.Add(new Point(cell.XPos, cell.YPos), new Cell(cell.XPos, cell.YPos, cell.IsAlive));
+                Cells.Add(cell.Location, new Cell(cell.Location, cell.IsAlive));
             }
         }
-
     }
 }

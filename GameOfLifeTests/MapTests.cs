@@ -22,17 +22,17 @@ namespace GameOfLifeTests
         public void GetCell()
         {
             SimpleMap map = new SimpleMap(2, GameRules.Standard());
-            Assert.AreEqual(0, map.GetCell(0, 0).XPos);
-            Assert.AreEqual(0, map.GetCell(0, 0).YPos);
+            Assert.AreEqual(0, map.GetCell(0, 0).Location.X);
+            Assert.AreEqual(0, map.GetCell(0, 0).Location.Y);
 
-            Assert.AreEqual(1, map.GetCell(1, 0).XPos);
-            Assert.AreEqual(0, map.GetCell(1, 0).YPos);
+            Assert.AreEqual(1, map.GetCell(1, 0).Location.X);
+            Assert.AreEqual(0, map.GetCell(1, 0).Location.Y);
 
-            Assert.AreEqual(0, map.GetCell(0, 1).XPos);
-            Assert.AreEqual(1, map.GetCell(0, 1).YPos);
+            Assert.AreEqual(0, map.GetCell(0, 1).Location.X);
+            Assert.AreEqual(1, map.GetCell(0, 1).Location.Y);
 
-            Assert.AreEqual(1, map.GetCell(1, 1).XPos);
-            Assert.AreEqual(1, map.GetCell(1, 1).YPos);
+            Assert.AreEqual(1, map.GetCell(1, 1).Location.X);
+            Assert.AreEqual(1, map.GetCell(1, 1).Location.Y);
         }
 
         [Test]

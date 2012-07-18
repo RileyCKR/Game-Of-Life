@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
 using NUnit.Framework;
 using GameOfLife;
 
@@ -16,30 +17,27 @@ namespace GameOfLifeTests
             [Test]
             public void SetsXPos()
             {
-                int xpos = 10;
-                int ypos = 0;
+                Point location = new Point(10, 0);
                 bool isAlive = false;
-                Cell cell = new Cell(xpos, ypos, isAlive);
-                Assert.AreEqual(xpos, cell.XPos);
+                Cell cell = new Cell(location, isAlive);
+                Assert.AreEqual(location.X, cell.Location.X);
             }
 
             [Test]
             public void SetsYPos()
             {
-                int xpos = 0;
-                int ypos = 10;
+                Point location = new Point(0, 10);
                 bool isAlive = false;
-                Cell cell = new Cell(xpos, ypos, isAlive);
-                Assert.AreEqual(ypos, cell.YPos);
+                Cell cell = new Cell(location, isAlive);
+                Assert.AreEqual(location.Y, cell.Location.Y);
             }
 
             [Test]
             public void SetsIsAlive()
             {
-                int xpos = 0;
-                int ypos = 0;
+                Point location = new Point();
                 bool isAlive = true;
-                Cell cell = new Cell(xpos, ypos, isAlive);
+                Cell cell = new Cell(location, isAlive);
                 Assert.AreEqual(isAlive, cell.IsAlive);
             }
         }
