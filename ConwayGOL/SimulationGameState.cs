@@ -13,9 +13,18 @@ namespace ConwayGOL
 {
     public class SimulationGameState
     {
+        private enum GameState
+        {
+            Paused,
+            Playing
+        }
+
         SimpleMap Map { get; set; }
         Rectangle Camera;
         Game Game;
+        int Ticks = 0;
+        int TickRate = 60;
+        GameState State = GameState.Paused;
 
         public SimulationGameState(Game game)
         {
@@ -35,11 +44,20 @@ namespace ConwayGOL
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public void Update(GameTime gameTime, InputState inputState)
         {
+            Ticks++;
+
             if (this.Game.IsActive)
             {
                 if (inputState.KeyDown(Keys.Space))
                 {
-                    Map.Tick();
+                    if (this.State == GameState.Paused)
+                    {
+                        this.State = GameState.Playing;
+                    }
+                    else
+                    {
+                        this.State = GameState.Paused;
+                    }
                 }
 
                 if (inputState.KeyDown(Keys.Escape))
@@ -75,6 +93,12 @@ namespace ConwayGOL
                     cellPoint.Y = cellPoint.Y + yRow;
                     Map.FlipCell(cellPoint.X, cellPoint.Y);
                 }
+            }
+
+            if (this.State == GameState.Playing && Ticks >= TickRate)
+            {
+                Map.Tick();
+                Ticks = 0;
             }
         }
 
