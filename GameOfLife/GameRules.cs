@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ConwayGOL
+namespace GameOfLife
 {
     /// <summary>
     /// Runs the logic for the game board.
