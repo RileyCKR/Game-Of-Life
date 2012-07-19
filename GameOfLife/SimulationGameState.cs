@@ -69,12 +69,8 @@ namespace GameOfLife
 
                 if (inputState.LeftMouseUp())
                 {
-                    int xRow = inputState.MousePosition.X / 16;
-                    int yRow = inputState.MousePosition.Y / 16;
-                    Point cellPoint = new Point(Camera.Screen.X / 16, Camera.Screen.Y / 16);
-                    cellPoint.X = cellPoint.X + xRow;
-                    cellPoint.Y = cellPoint.Y + yRow;
-                    Map.FlipCell(cellPoint.X, cellPoint.Y);
+                    Point clickedCell = Camera.GetCellPointOfClick(inputState.MousePosition);
+                    Map.FlipCell(clickedCell.X, clickedCell.Y);
                 }
             }
 

@@ -15,9 +15,12 @@ namespace GameOfLife
             get { return _Screen; }
         }
 
+        public int Zoom { get; private set; }
+
         public Camera(Point screenSize)
         {
             _Screen = new Rectangle(0, 0, screenSize.X, screenSize.Y);
+            Zoom = 0;
         }
 
         public void Update(GameTime gameTime, InputState inputState)
@@ -38,6 +41,46 @@ namespace GameOfLife
             else if (inputState.KeyDown(Keys.Down))
             {
                 _Screen.Offset(new Point(0, 16));
+            }
+
+            if(inputState.KeyDown(Keys.PageUp))
+            {
+                ZoomIn();
+            }
+            else if (inputState.KeyDown(Keys.PageDown))
+            {
+                ZoomOut();
+            }
+        }
+
+        public Point GetCellPointOfClick(Point mouseClick)
+        {
+            int cellSize = 16;
+            if (Zoom > 0)
+            {
+                cellSize = 8;
+            }
+            int xRow = mouseClick.X / cellSize;
+            int yRow = mouseClick.Y / cellSize;
+            Point cellPoint = new Point(Screen.X / cellSize, Screen.Y / cellSize);
+            cellPoint.X = cellPoint.X + xRow;
+            cellPoint.Y = cellPoint.Y + yRow;
+            return cellPoint;
+        }
+
+        private void ZoomIn()
+        {
+            if (Zoom > 0)
+            {
+                Zoom--;
+            }
+        }
+
+        private void ZoomOut()
+        {
+            if (Zoom < 4)
+            {
+                Zoom++;
             }
         }
     }

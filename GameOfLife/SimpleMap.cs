@@ -179,9 +179,17 @@ namespace GameOfLife
             Point offset = new Point(-camera.Screen.X, -camera.Screen.Y);
             foreach (ICell cell in CellMap)
             {
-                Vector2 location = new Vector2(offset.X + (cell.Location.X * 16), offset.Y + (cell.Location.Y * 16));
+                Texture2D texture;
+                if (camera.Zoom == 0)
+                {
+                    texture = cell.IsAlive ? GameTextures.CellAlive : GameTextures.CellDead;
+                }
+                else
+                {
+                    texture = cell.IsAlive ? GameTextures.CellAlive8 : GameTextures.CellDead8;
+                }
 
-                Texture2D texture = cell.IsAlive ? GameTextures.CellAlive : GameTextures.CellDead;
+                Vector2 location = new Vector2(offset.X + (cell.Location.X * texture.Width), offset.Y + (cell.Location.Y * texture.Height));
                 spriteBatch.Draw(texture, location, null, Color.White);
             }
         }
