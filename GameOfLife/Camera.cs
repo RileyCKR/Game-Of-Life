@@ -55,11 +55,28 @@ namespace GameOfLife
 
         public Point GetCellPointOfClick(Point mouseClick)
         {
-            int cellSize = 16;
-            if (Zoom > 0)
+            int cellSize;
+            if (Zoom == 0)
+            {
+                cellSize = 16;
+            }
+            else if (Zoom == 1)
             {
                 cellSize = 8;
             }
+            else if (Zoom == 2)
+            {
+                cellSize = 4;
+            }
+            else if (Zoom == 3)
+            {
+                cellSize = 2;
+            }
+            else
+            {
+                cellSize = 1;
+            }
+
             int xRow = mouseClick.X / cellSize;
             int yRow = mouseClick.Y / cellSize;
             Point cellPoint = new Point(Screen.X / cellSize, Screen.Y / cellSize);

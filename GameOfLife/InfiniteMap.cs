@@ -145,12 +145,25 @@ namespace GameOfLife
                 Texture2D texture;
                 if (camera.Zoom == 0)
                 {
-                    texture = cell.IsAlive ? GameTextures.CellAlive : GameTextures.CellDead;
+                    texture = cell.IsAlive ? GameTextures.CellAlive16 : GameTextures.CellDead16;
                 }
-                else
+                else if (camera.Zoom == 1)
                 {
                     texture = cell.IsAlive ? GameTextures.CellAlive8 : GameTextures.CellDead8;
                 }
+                else if (camera.Zoom == 2)
+                {
+                    texture = cell.IsAlive ? GameTextures.CellAlive4 : GameTextures.CellDead4;
+                }
+                else if (camera.Zoom == 3)
+                {
+                    texture = cell.IsAlive ? GameTextures.CellAlive2 : GameTextures.CellDead2;
+                }
+                else
+                {
+                    texture = cell.IsAlive ? GameTextures.CellAlive1 : GameTextures.CellDead1;
+                }
+
 
                 Vector2 location = new Vector2(offset.X + (cell.Location.X * texture.Width), offset.Y + (cell.Location.Y * texture.Height));
                 spriteBatch.Draw(texture, location, null, Color.White);
