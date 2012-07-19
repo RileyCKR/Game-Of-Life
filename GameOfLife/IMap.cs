@@ -18,6 +18,6 @@ namespace GameOfLife
 
         ICell GetCell(int xRow, int yRow);
 
-        void Draw(SpriteBatch spriteBatch, Rectangle camera);
+        void Draw(SpriteBatch spriteBatch, Camera camera);
     }
 }

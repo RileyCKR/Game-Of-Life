@@ -20,7 +20,7 @@ namespace GameOfLife
         }
 
         IMap Map { get; set; }
-        Rectangle Camera;
+        Camera Camera;
         Game Game;
         int Ticks = 0;
         int TickRate = 10;
@@ -33,7 +33,7 @@ namespace GameOfLife
 
         public void Initialize()
         {
-            Camera = new Rectangle(0, 0, 800, 600);
+            Camera = new Camera(new Point(800, 600));
             SetupMap();
         }
 
@@ -65,29 +65,13 @@ namespace GameOfLife
                     SetupMap();
                 }
 
-                if (inputState.KeyDown(Keys.Left))
-                {
-                    Camera.Offset(new Point(-16, 0));
-                }
-                else if (inputState.KeyDown(Keys.Right))
-                {
-                    Camera.Offset(new Point(16, 0));
-                }
-
-                if (inputState.KeyDown(Keys.Up))
-                {
-                    Camera.Offset(new Point(0, -16));
-                }
-                else if (inputState.KeyDown(Keys.Down))
-                {
-                    Camera.Offset(new Point(0, 16));
-                }
+                Camera.Update(gameTime, inputState);
 
                 if (inputState.LeftMouseUp())
                 {
                     int xRow = inputState.MousePosition.X / 16;
                     int yRow = inputState.MousePosition.Y / 16;
-                    Point cellPoint = new Point(Camera.Location.X / 16, Camera.Location.Y / 16);
+                    Point cellPoint = new Point(Camera.Screen.X / 16, Camera.Screen.Y / 16);
                     cellPoint.X = cellPoint.X + xRow;
                     cellPoint.Y = cellPoint.Y + yRow;
                     Map.FlipCell(cellPoint.X, cellPoint.Y);
