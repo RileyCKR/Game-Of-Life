@@ -7,21 +7,21 @@ using GameOfLife;
 
 namespace GameOfLifeTests
 {
+    //TODO: Consolidate Duplicate code between SimpleMapTests and InfiniteMapTests
     [TestFixture]
-    public class MapTests
+    public class InfiniteMapTests
     {
-        //TODO: Expand tick method testing
         [Test]
         public void Tick()
         {
-            SimpleMap map = new SimpleMap(2, GameRules.Standard());
+            InfiniteMap map = new InfiniteMap(GameRules.Standard());
             map.Tick();
         }
 
         [Test]
         public void GetCell()
         {
-            SimpleMap map = new SimpleMap(2, GameRules.Standard());
+            InfiniteMap map = new InfiniteMap(GameRules.Standard());
             Assert.AreEqual(0, map.GetCell(0, 0).Location.X);
             Assert.AreEqual(0, map.GetCell(0, 0).Location.Y);
 
@@ -38,7 +38,7 @@ namespace GameOfLifeTests
         [Test]
         public void FlipCell()
         {
-            SimpleMap map = new SimpleMap(2, GameRules.Standard());
+            InfiniteMap map = new InfiniteMap(GameRules.Standard());
             map.FlipCell(0, 0);
             map.FlipCell(1, 0);
 

@@ -47,7 +47,8 @@
   <ItemGroup>
     <Compile Include="CellTests.cs" />
     <Compile Include="GameRulesTests.cs" />
-    <Compile Include="MapTests.cs" />
+    <Compile Include="InfiniteMapTests.cs" />
+    <Compile Include="SimpleMapTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

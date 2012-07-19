@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameOfLife
 {
-    class InfiniteMap : IMap
+    public class InfiniteMap : IMap
     {
         private Dictionary<Point, ICell> Cells;
         private Dictionary<Point, ICell> CellBuffer;
