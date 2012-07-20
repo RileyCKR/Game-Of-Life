@@ -28,7 +28,11 @@ namespace GameOfLife
 
         public Point MousePosition { get; private set; }
 
+        public Point LastMousePosition { get; private set; }
+
         public Vector2 MousePositionAsVector { get; private set; }
+
+        public Vector2 LastMousePositionAsVector { get; private set; }
 
         #endregion
 
@@ -53,6 +57,8 @@ namespace GameOfLife
             KeyboardState = Keyboard.GetState();
 
             LastMouseState = MouseState;
+            LastMousePosition = MousePosition;
+            LastMousePositionAsVector = MousePositionAsVector;
             MouseState = Mouse.GetState();
 
             MousePosition = new Point(MouseState.X, MouseState.Y);
@@ -113,6 +119,15 @@ namespace GameOfLife
         }
 
         /// <summary>
+        /// Returns true if the left mouse is in the pressed state.
+        /// </summary>
+        /// <returns></returns>
+        public bool LeftMousePressed()
+        {
+            return MouseState.LeftButton == ButtonState.Pressed;
+        }
+
+        /// <summary>
         /// Returns true as soon as the right mouse button is pressed.
         /// </summary>
         /// <returns></returns>
@@ -123,13 +138,32 @@ namespace GameOfLife
         }
 
         /// <summary>
-        /// returns true as soon as the right mouse button is released.
+        /// Returns true as soon as the right mouse button is released.
         /// </summary>
         /// <returns></returns>
         public bool RightMouseUp()
         {
             return MouseState.RightButton == ButtonState.Released &&
                 LastMouseState.RightButton == ButtonState.Pressed;
+        }
+
+        /// <summary>
+        /// Returns true if the right mouse is in the pressed state.
+        /// </summary>
+        /// <returns></returns>
+        public bool RightMousePressed()
+        {
+            return MouseState.RightButton == ButtonState.Pressed;
+        }
+
+        public bool MouseScrolledUp()
+        {
+            return MouseState.ScrollWheelValue > LastMouseState.ScrollWheelValue;
+        }
+
+        public bool MouseScrolledDown()
+        {
+            return MouseState.ScrollWheelValue < LastMouseState.ScrollWheelValue;
         }
 
         #endregion
