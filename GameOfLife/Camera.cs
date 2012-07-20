@@ -25,29 +25,18 @@ namespace GameOfLife
 
         public void Update(GameTime gameTime, InputState inputState)
         {
-            if (inputState.KeyDown(Keys.Left))
+            if (inputState.RightMousePressed())
             {
-                _Screen.Offset(new Point(-16, 0));
-            }
-            else if (inputState.KeyDown(Keys.Right))
-            {
-                _Screen.Offset(new Point(16, 0));
+                Point offset = new Point(inputState.LastMousePosition.X - inputState.MousePosition.X, inputState.LastMousePosition.Y - inputState.MousePosition.Y);
+
+                _Screen.Offset(offset);
             }
 
-            if (inputState.KeyDown(Keys.Up))
-            {
-                _Screen.Offset(new Point(0, -16));
-            }
-            else if (inputState.KeyDown(Keys.Down))
-            {
-                _Screen.Offset(new Point(0, 16));
-            }
-
-            if(inputState.KeyDown(Keys.PageUp))
+            if(inputState.MouseScrolledUp() || inputState.KeyDown(Keys.PageUp))
             {
                 ZoomIn();
             }
-            else if (inputState.KeyDown(Keys.PageDown))
+            else if (inputState.MouseScrolledDown() || inputState.KeyDown(Keys.PageDown))
             {
                 ZoomOut();
             }
