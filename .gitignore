@@ -76,6 +76,10 @@ publish
 # Publish Web Output
 *.Publish.xml
 
+#NDepend
+NDependOut/*
+*.ndproj
+
 # Others
 [Bb]in
 [Oo]bj
