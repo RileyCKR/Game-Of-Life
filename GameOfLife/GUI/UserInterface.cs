@@ -28,7 +28,10 @@ namespace GameOfLife.GUI
 
         public void Update()
         {
-            
+            foreach (Control thisControl in Controls)
+            {
+                thisControl.HandleInput(inputState);
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)

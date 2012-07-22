@@ -21,6 +21,8 @@ namespace GameOfLife.GUI
             btnPlay = new ImageButton()
             {
                 BackgroundTexture = GameTextures.ButtonPlay,
+                HoverTexture = GameTextures.ButtonPlayHover,
+                ClickTexture = GameTextures.ButtonPlayClick,
                 Position = new Rectangle(20, 20, 64, 64)
             };
             ChildControls.Add(btnPlay);
@@ -28,6 +30,8 @@ namespace GameOfLife.GUI
             btnPause = new ImageButton()
             {
                 BackgroundTexture = GameTextures.ButtonPause,
+                HoverTexture = GameTextures.ButtonPauseHover,
+                ClickTexture = GameTextures.ButtonPauseClick,
                 Position = new Rectangle(104, 20, 64, 64)
             };
             ChildControls.Add(btnPause);
@@ -35,6 +39,8 @@ namespace GameOfLife.GUI
             btnStep = new ImageButton()
             {
                 BackgroundTexture = GameTextures.ButtonStep,
+                HoverTexture = GameTextures.ButtonStepHover,
+                ClickTexture = GameTextures.ButtonStepClick,
                 Position = new Rectangle(188, 20, 64, 64)
             };
             ChildControls.Add(btnStep);

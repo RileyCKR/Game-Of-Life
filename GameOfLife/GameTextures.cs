@@ -25,6 +25,12 @@ namespace GameOfLife
         internal static Texture2D ButtonPlay { get; private set; }
         internal static Texture2D ButtonPause { get; private set; }
         internal static Texture2D ButtonStep { get; private set; }
+        internal static Texture2D ButtonPlayHover { get; private set; }
+        internal static Texture2D ButtonPauseHover { get; private set; }
+        internal static Texture2D ButtonStepHover { get; private set; }
+        internal static Texture2D ButtonPlayClick { get; private set; }
+        internal static Texture2D ButtonPauseClick { get; private set; }
+        internal static Texture2D ButtonStepClick { get; private set; }
 
         internal static Texture2D PanelPlayback { get; private set; }
 
@@ -42,9 +48,15 @@ namespace GameOfLife
             CellDead2 = contentManager.Load<Texture2D>("CellOff2");
             CellDead1 = contentManager.Load<Texture2D>("CellOff1");
 
-            ButtonPlay = contentManager.Load<Texture2D>("button-Play");
-            ButtonPause = contentManager.Load<Texture2D>("button-Pause");
-            ButtonStep = contentManager.Load<Texture2D>("button-Step");
+            ButtonPlay = contentManager.Load<Texture2D>("button-play");
+            ButtonPause = contentManager.Load<Texture2D>("button-pause");
+            ButtonStep = contentManager.Load<Texture2D>("button-step");
+            ButtonPlayHover = contentManager.Load<Texture2D>("button-play-hover");
+            ButtonPauseHover = contentManager.Load<Texture2D>("button-pause-hover");
+            ButtonStepHover = contentManager.Load<Texture2D>("button-step-hover");
+            ButtonPlayClick = contentManager.Load<Texture2D>("button-play-click");
+            ButtonPauseClick = contentManager.Load<Texture2D>("button-pause-click");
+            ButtonStepClick = contentManager.Load<Texture2D>("button-step-click");
 
             PanelPlayback = contentManager.Load<Texture2D>("panel-playback");
         }

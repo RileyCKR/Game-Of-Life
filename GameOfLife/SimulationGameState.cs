@@ -59,6 +59,8 @@ namespace GameOfLife
 
             if (this.Game.IsActive)
             {
+                GUI.Update();
+
                 if (inputState.KeyDown(Keys.Space))
                 {
                     if (this.State == GameState.Paused)
