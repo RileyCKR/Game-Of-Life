@@ -34,6 +34,8 @@ namespace GameOfLife
 
         public Vector2 LastMousePositionAsVector { get; private set; }
 
+        public bool MouseInputHandled { get; set; }
+
         #endregion
 
         #region Constructors
@@ -56,6 +58,7 @@ namespace GameOfLife
             LastKeyboardState = KeyboardState;
             KeyboardState = Keyboard.GetState();
 
+            MouseInputHandled = false;
             LastMouseState = MouseState;
             LastMousePosition = MousePosition;
             LastMousePositionAsVector = MousePositionAsVector;

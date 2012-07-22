@@ -25,16 +25,26 @@ namespace GameOfLife
         int Ticks = 0;
         int TickRate = 10;
         GameState State = GameState.Paused;
+        InputState inputState;
+        UserInterface GUI;
 
-        public SimulationGameState(Game game)
+        public SimulationGameState(Game game, InputState inputState)
         {
             this.Game = game;
+            this.inputState = inputState;
+            GUI = new SimulationUI(inputState);
         }
 
         public void Initialize()
         {
             Camera = new Camera(new Point(800, 600));
             SetupMap();
+            
+        }
+
+        public void ContentLoaded()
+        {
+            GUI.Initialize();
         }
 
         /// <summary>
@@ -42,12 +52,36 @@ namespace GameOfLife
         /// checking for collisions, gathering input, and playing audio.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        public void Update(GameTime gameTime, InputState inputState)
+        public void Update(GameTime gameTime)
         {
             Ticks++;
 
             if (this.Game.IsActive)
             {
+                GUI.Update();
+
+                UserInterfaceMessage guiMessage;
+                while (GUI.GetMessage(out guiMessage))
+                {
+                    switch (guiMessage)
+                    {
+                        case UserInterfaceMessage.Play:
+                            this.State = GameState.Playing;
+                            break;
+                        case UserInterfaceMessage.Pause:
+                            this.State = GameState.Paused;
+                            break;
+                        case UserInterfaceMessage.Step:
+                            this.State = GameState.Paused;
+                            Map.Tick();
+                            Ticks = 0;
+                            break;
+                        default:
+                            string message = "Unrecognized GUI Message '" + guiMessage.ToString() + "'.";
+                            throw new InvalidOperationException(message);
+                    }
+                }
+
                 if (inputState.KeyDown(Keys.Space))
                 {
                     if (this.State == GameState.Paused)
@@ -67,7 +101,7 @@ namespace GameOfLife
 
                 Camera.Update(gameTime, inputState);
 
-                if (inputState.LeftMouseUp())
+                if (!inputState.MouseInputHandled && inputState.LeftMouseUp())
                 {
                     Point clickedCell = Camera.GetCellPointOfClick(inputState.MousePosition);
                     Map.FlipCell(clickedCell.X, clickedCell.Y);
@@ -84,6 +118,7 @@ namespace GameOfLife
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             Map.Draw(spriteBatch, Camera);
+            GUI.Draw(spriteBatch);
         }
 
         private void SetupMap()

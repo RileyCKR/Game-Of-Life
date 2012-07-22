@@ -40,7 +40,7 @@ namespace GameOfLife
         protected override void Initialize()
         {
             InputState = new InputState();
-            SimulationState = new SimulationGameState(this);
+            SimulationState = new SimulationGameState(this, InputState);
             SimulationState.Initialize();
 
             base.Initialize();
@@ -54,6 +54,7 @@ namespace GameOfLife
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             GameTextures.Load(this.Content);
+            SimulationState.ContentLoaded();
         }
 
         /// <summary>
@@ -73,7 +74,7 @@ namespace GameOfLife
         {
             InputState.Update();
 
-            SimulationState.Update(gameTime, InputState);
+            SimulationState.Update(gameTime);
 
             base.Update(gameTime);
         }
