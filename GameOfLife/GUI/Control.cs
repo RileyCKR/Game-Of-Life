@@ -16,18 +16,25 @@ namespace GameOfLife.GUI
 
     abstract class Control
     {
+        public event EventHandler OnClick;
+
         public Texture2D BackgroundTexture { get; set; }
         public Rectangle Position { get; set; }
         public List<Control> ChildControls { get; set; }
-        public ControlState ControlState;
+        public ControlState ControlState { get; private set; }
+        public ControlState LastControlState { get; private set; }
+        protected UserInterface UserInterface { get; private set; }
 
-        public Control()
+        public Control(UserInterface userInterface)
         {
-            ChildControls = new List<Control>();
+            this.ChildControls = new List<Control>();
+            this.UserInterface = userInterface;
         }
 
         public virtual void HandleInput(InputState inputState)
         {
+            LastControlState = ControlState;
+
             if (Position.Contains(inputState.MousePosition))
             {
                 if (inputState.LeftMousePressed())
@@ -47,6 +54,15 @@ namespace GameOfLife.GUI
             foreach (Control thisControl in ChildControls)
             {
                 thisControl.HandleInput(inputState);
+            }
+
+            //Handle Click Event
+            if (LastControlState == GUI.ControlState.Clicked && ControlState != GUI.ControlState.Clicked)
+            {
+                if (OnClick != null)
+                {
+                    OnClick(this, EventArgs.Empty);
+                }
             }
         }
 

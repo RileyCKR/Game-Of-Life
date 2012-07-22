@@ -9,20 +9,25 @@ namespace GameOfLife.GUI
 {
     class ImageButton : Control
     {
+        public ImageButton(UserInterface userInterface)
+            : base(userInterface)
+        {
+        }
+
         public Texture2D ClickTexture { get; set; }
         public Texture2D HoverTexture { get; set; }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (ControlState == GUI.ControlState.Inactive)
+            if (ControlState == ControlState.Inactive)
             {
                 base.Draw(spriteBatch);
             }
-            else if (ControlState == GUI.ControlState.Hover)
+            else if (ControlState == ControlState.Hover)
             {
                 spriteBatch.Draw(HoverTexture, Position, null, Color.White);
             }
-            else if (ControlState == GUI.ControlState.Clicked)
+            else if (ControlState == ControlState.Clicked)
             {
                 spriteBatch.Draw(ClickTexture, Position, null, Color.White);
             }

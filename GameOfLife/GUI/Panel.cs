@@ -7,5 +7,9 @@ namespace GameOfLife.GUI
 {
     class Panel : Control
     {
+        public Panel(UserInterface userInterface)
+            : base (userInterface)
+        {
+        }
     }
 }

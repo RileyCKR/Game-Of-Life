@@ -13,16 +13,18 @@ namespace GameOfLife.GUI
         private InputState inputState;
 
         public List<Control> Controls { get; set; }
+        protected Queue<string> MessageQueue { get; private set; }
 
         public UserInterface(InputState inputState)
         {
             this.inputState = inputState;
             this.Controls = new List<Control>();
+            MessageQueue = new Queue<string>();
         }
 
         public void Initialize()
         {
-            PlaybackDock playbackDock = new PlaybackDock();
+            PlaybackDock playbackDock = new PlaybackDock(this);
             Controls.Add(playbackDock);
         }
 
@@ -39,6 +41,25 @@ namespace GameOfLife.GUI
             foreach (Control thisControl in Controls)
             {
                 thisControl.Draw(spriteBatch);
+            }
+        }
+
+        public void AddMessage(string message)
+        {
+            MessageQueue.Enqueue(message);
+        }
+
+        public bool GetMessage(out string message)
+        {
+            if (MessageQueue.Count > 0)
+            {
+                message = MessageQueue.Dequeue();
+                return true;
+            }
+            else
+            {
+                message = null;
+                return false;
             }
         }
     }
