@@ -32,7 +32,7 @@ namespace GameOfLife
         {
             this.Game = game;
             this.inputState = inputState;
-            GUI = new UserInterface(inputState);
+            GUI = new SimulationUI(inputState);
         }
 
         public void Initialize()
@@ -63,21 +63,22 @@ namespace GameOfLife
                 UserInterfaceMessage guiMessage;
                 while (GUI.GetMessage(out guiMessage))
                 {
-                    if (guiMessage == UserInterfaceMessage.Play)
+                    switch (guiMessage)
                     {
-                        this.State = GameState.Playing;
-                    }
-
-                    if (guiMessage == UserInterfaceMessage.Pause)
-                    {
-                        this.State = GameState.Paused;
-                    }
-
-                    if (guiMessage == UserInterfaceMessage.Step)
-                    {
-                        this.State = GameState.Paused;
-                        Map.Tick();
-                        Ticks = 0;
+                        case UserInterfaceMessage.Play:
+                            this.State = GameState.Playing;
+                            break;
+                        case UserInterfaceMessage.Pause:
+                            this.State = GameState.Paused;
+                            break;
+                        case UserInterfaceMessage.Step:
+                            this.State = GameState.Paused;
+                            Map.Tick();
+                            Ticks = 0;
+                            break;
+                        default:
+                            string message = "Unrecognized GUI Message '" + guiMessage.ToString() + "'.";
+                            throw new InvalidOperationException(message);
                     }
                 }
 

@@ -16,7 +16,7 @@ namespace GameOfLife
         Step = 3
     }
 
-    class UserInterface
+    abstract class UserInterface
     {
         private InputState inputState;
 
@@ -30,10 +30,9 @@ namespace GameOfLife
             MessageQueue = new Queue<UserInterfaceMessage>();
         }
 
-        public void Initialize()
+        public virtual void Initialize()
         {
-            PlaybackDock playbackDock = new PlaybackDock(this);
-            Controls.Add(playbackDock);
+            
         }
 
         public void Update()

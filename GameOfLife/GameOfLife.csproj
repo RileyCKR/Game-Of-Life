@@ -111,6 +111,7 @@
     <Compile Include="Cell.cs" />
     <Compile Include="GameTextures.cs" />
     <Compile Include="GUI\PlaybackDock.cs" />
+    <Compile Include="GUI\SimulationUI.cs" />
     <Compile Include="GUI\UserInterface.cs" />
     <Compile Include="GUI\Control.cs" />
     <Compile Include="GUI\ImageButton.cs" />
