@@ -61,6 +61,27 @@ namespace GameOfLife
             {
                 GUI.Update();
 
+                string guiMessage;
+                while (GUI.GetMessage(out guiMessage))
+                {
+                    if (guiMessage == "PLAY")
+                    {
+                        this.State = GameState.Playing;
+                    }
+
+                    if (guiMessage == "PAUSE")
+                    {
+                        this.State = GameState.Paused;
+                    }
+
+                    if (guiMessage == "STEP")
+                    {
+                        this.State = GameState.Paused;
+                        Map.Tick();
+                        Ticks = 0;
+                    }
+                }
+
                 if (inputState.KeyDown(Keys.Space))
                 {
                     if (this.State == GameState.Paused)
