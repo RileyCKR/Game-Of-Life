@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace GameOfLife.GUI
+namespace GameOfLife
 {
     enum ControlState
     {
@@ -44,22 +44,22 @@ namespace GameOfLife.GUI
             {
                 if (inputState.LeftMousePressed())
                 {
-                    ControlState = GUI.ControlState.Clicked;
+                    ControlState = ControlState.Clicked;
                 }
                 else
                 {
-                    ControlState = GUI.ControlState.Hover;
+                    ControlState = ControlState.Hover;
                 }
 
                 inputState.MouseInputHandled = true;
             }
             else
             {
-                ControlState = GUI.ControlState.Inactive;
+                ControlState = ControlState.Inactive;
             }
 
             //Handle Click Event
-            if (LastControlState == GUI.ControlState.Clicked && ControlState != GUI.ControlState.Clicked)
+            if (LastControlState == ControlState.Clicked && ControlState != ControlState.Clicked)
             {
                 if (OnClick != null)
                 {

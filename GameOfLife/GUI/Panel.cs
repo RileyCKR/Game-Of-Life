@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GameOfLife.GUI
+namespace GameOfLife
 {
     class Panel : Control
     {
