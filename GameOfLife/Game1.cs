@@ -54,6 +54,7 @@ namespace GameOfLife
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             GameTextures.Load(this.Content);
+            SimulationState.ContentLoaded();
         }
 
         /// <summary>

@@ -40,6 +40,12 @@ namespace GameOfLife
         {
             Camera = new Camera(new Point(800, 600));
             SetupMap();
+            
+        }
+
+        public void ContentLoaded()
+        {
+            GUI.Initialize();
         }
 
         /// <summary>
@@ -89,6 +95,7 @@ namespace GameOfLife
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             Map.Draw(spriteBatch, Camera);
+            GUI.Draw(spriteBatch);
         }
 
         private void SetupMap()
