@@ -52,17 +52,17 @@ namespace GameOfLife
 
         void PlayButton_OnClick(object sender, EventArgs e)
         {
-            UserInterface.AddMessage("PLAY");
+            UserInterface.AddMessage(UserInterfaceMessage.Play);
         }
 
         void btnPause_OnClick(object sender, EventArgs e)
         {
-            UserInterface.AddMessage("PAUSE");
+            UserInterface.AddMessage(UserInterfaceMessage.Pause);
         }
 
         void btnStep_OnClick(object sender, EventArgs e)
         {
-            UserInterface.AddMessage("STEP");
+            UserInterface.AddMessage(UserInterfaceMessage.Step);
         }
     }
 }

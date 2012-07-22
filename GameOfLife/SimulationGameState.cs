@@ -60,20 +60,20 @@ namespace GameOfLife
             {
                 GUI.Update();
 
-                string guiMessage;
+                UserInterfaceMessage guiMessage;
                 while (GUI.GetMessage(out guiMessage))
                 {
-                    if (guiMessage == "PLAY")
+                    if (guiMessage == UserInterfaceMessage.Play)
                     {
                         this.State = GameState.Playing;
                     }
 
-                    if (guiMessage == "PAUSE")
+                    if (guiMessage == UserInterfaceMessage.Pause)
                     {
                         this.State = GameState.Paused;
                     }
 
-                    if (guiMessage == "STEP")
+                    if (guiMessage == UserInterfaceMessage.Step)
                     {
                         this.State = GameState.Paused;
                         Map.Tick();

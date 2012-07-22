@@ -8,18 +8,26 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameOfLife
 {
+    public enum UserInterfaceMessage
+    {
+        Noop = 0,
+        Play = 1,
+        Pause = 2,
+        Step = 3
+    }
+
     class UserInterface
     {
         private InputState inputState;
 
         public List<Control> Controls { get; set; }
-        protected Queue<string> MessageQueue { get; private set; }
+        protected Queue<UserInterfaceMessage> MessageQueue { get; private set; }
 
         public UserInterface(InputState inputState)
         {
             this.inputState = inputState;
             this.Controls = new List<Control>();
-            MessageQueue = new Queue<string>();
+            MessageQueue = new Queue<UserInterfaceMessage>();
         }
 
         public void Initialize()
@@ -44,12 +52,12 @@ namespace GameOfLife
             }
         }
 
-        public void AddMessage(string message)
+        public void AddMessage(UserInterfaceMessage message)
         {
             MessageQueue.Enqueue(message);
         }
 
-        public bool GetMessage(out string message)
+        public bool GetMessage(out UserInterfaceMessage message)
         {
             if (MessageQueue.Count > 0)
             {
@@ -58,7 +66,7 @@ namespace GameOfLife
             }
             else
             {
-                message = null;
+                message = UserInterfaceMessage.Noop;
                 return false;
             }
         }
