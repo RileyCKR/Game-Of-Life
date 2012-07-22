@@ -26,6 +26,8 @@ namespace GameOfLife
         internal static Texture2D ButtonPause { get; private set; }
         internal static Texture2D ButtonStep { get; private set; }
 
+        internal static Texture2D PanelPlayback { get; private set; }
+
         internal static void Load(ContentManager contentManager)
         {
             CellAlive16 = contentManager.Load<Texture2D>("CellOn16");
@@ -43,6 +45,8 @@ namespace GameOfLife
             ButtonPlay = contentManager.Load<Texture2D>("button-Play");
             ButtonPause = contentManager.Load<Texture2D>("button-Pause");
             ButtonStep = contentManager.Load<Texture2D>("button-Step");
+
+            PanelPlayback = contentManager.Load<Texture2D>("panel-playback");
         }
     }
 }
