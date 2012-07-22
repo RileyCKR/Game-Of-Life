@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using GameOfLife.GUI;
 
 namespace GameOfLife
 {
@@ -25,10 +26,14 @@ namespace GameOfLife
         int Ticks = 0;
         int TickRate = 10;
         GameState State = GameState.Paused;
+        InputState inputState;
+        UserInterface GUI;
 
-        public SimulationGameState(Game game)
+        public SimulationGameState(Game game, InputState inputState)
         {
             this.Game = game;
+            this.inputState = inputState;
+            GUI = new UserInterface(inputState);
         }
 
         public void Initialize()
@@ -42,7 +47,7 @@ namespace GameOfLife
         /// checking for collisions, gathering input, and playing audio.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        public void Update(GameTime gameTime, InputState inputState)
+        public void Update(GameTime gameTime)
         {
             Ticks++;
 

@@ -10,17 +10,21 @@ namespace GameOfLife
 {
     internal static class GameTextures
     {
-        internal static Texture2D CellAlive16;
-        internal static Texture2D CellAlive8;
-        internal static Texture2D CellAlive4;
-        internal static Texture2D CellAlive2;
-        internal static Texture2D CellAlive1;
+        internal static Texture2D CellAlive16 { get; private set; }
+        internal static Texture2D CellAlive8 { get; private set; }
+        internal static Texture2D CellAlive4 { get; private set; }
+        internal static Texture2D CellAlive2 { get; private set; }
+        internal static Texture2D CellAlive1 { get; private set; }
 
-        internal static Texture2D CellDead16;
-        internal static Texture2D CellDead8;
-        internal static Texture2D CellDead4;
-        internal static Texture2D CellDead2;
-        internal static Texture2D CellDead1;
+        internal static Texture2D CellDead16 { get; private set; }
+        internal static Texture2D CellDead8 { get; private set; }
+        internal static Texture2D CellDead4 { get; private set; }
+        internal static Texture2D CellDead2 { get; private set; }
+        internal static Texture2D CellDead1 { get; private set; }
+
+        internal static Texture2D ButtonPlay { get; private set; }
+        internal static Texture2D ButtonPause { get; private set; }
+        internal static Texture2D ButtonStep { get; private set; }
 
         internal static void Load(ContentManager contentManager)
         {
@@ -35,6 +39,10 @@ namespace GameOfLife
             CellDead4 = contentManager.Load<Texture2D>("CellOff4");
             CellDead2 = contentManager.Load<Texture2D>("CellOff2");
             CellDead1 = contentManager.Load<Texture2D>("CellOff1");
+
+            ButtonPlay = contentManager.Load<Texture2D>("button-Play");
+            ButtonPause = contentManager.Load<Texture2D>("button-Pause");
+            ButtonStep = contentManager.Load<Texture2D>("button-Step");
         }
     }
 }
