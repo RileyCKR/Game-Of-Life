@@ -13,6 +13,11 @@ namespace GameOfLife.GUI
         public Rectangle Position { get; set; }
         public List<Control> ChildControls { get; set; }
 
+        public Control()
+        {
+            ChildControls = new List<Control>();
+        }
+
         public virtual void HandleInput(InputState inputState)
         {
         }
