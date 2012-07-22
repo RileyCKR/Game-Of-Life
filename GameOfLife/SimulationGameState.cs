@@ -101,7 +101,7 @@ namespace GameOfLife
 
                 Camera.Update(gameTime, inputState);
 
-                if (inputState.LeftMouseUp())
+                if (!inputState.MouseInputHandled && inputState.LeftMouseUp())
                 {
                     Point clickedCell = Camera.GetCellPointOfClick(inputState.MousePosition);
                     Map.FlipCell(clickedCell.X, clickedCell.Y);

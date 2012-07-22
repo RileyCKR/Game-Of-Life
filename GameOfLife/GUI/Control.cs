@@ -33,9 +33,14 @@ namespace GameOfLife.GUI
 
         public virtual void HandleInput(InputState inputState)
         {
+            foreach (Control thisControl in ChildControls)
+            {
+                thisControl.HandleInput(inputState);
+            }
+
             LastControlState = ControlState;
 
-            if (Position.Contains(inputState.MousePosition))
+            if (!inputState.MouseInputHandled && Position.Contains(inputState.MousePosition))
             {
                 if (inputState.LeftMousePressed())
                 {
@@ -45,15 +50,12 @@ namespace GameOfLife.GUI
                 {
                     ControlState = GUI.ControlState.Hover;
                 }
+
+                inputState.MouseInputHandled = true;
             }
             else
             {
                 ControlState = GUI.ControlState.Inactive;
-            }
-
-            foreach (Control thisControl in ChildControls)
-            {
-                thisControl.HandleInput(inputState);
             }
 
             //Handle Click Event
