@@ -45,10 +45,14 @@ namespace GameOfLife
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            spriteBatch.Begin();
+
             foreach (Control thisControl in Controls)
             {
                 thisControl.Draw(spriteBatch);
             }
+
+            spriteBatch.End();
         }
 
         public void AddMessage(UserInterfaceMessage message)

@@ -87,11 +87,7 @@ namespace GameOfLife
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            spriteBatch.Begin();
-
             SimulationState.Draw(gameTime, spriteBatch);
-
-            spriteBatch.End();
 
             base.Draw(gameTime);
         }
