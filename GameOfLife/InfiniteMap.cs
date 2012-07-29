@@ -176,9 +176,10 @@ namespace GameOfLife
 
             //Small offset for the background texture so the background is always aligned with the map cells
             Vector2 backgroundNudge = new Vector2(offset.X % deadTexture.Width, offset.Y % deadTexture.Height);
+            //backgroundNudge += new Vector2(-deadTexture.Width, -deadTexture.Height);
 
             //Draw the background screen
-            Rectangle screen = new Rectangle(0, 0, 800, 600);
+            Rectangle screen = new Rectangle(0, 0, 800 + deadTexture.Width * 2, 600 + deadTexture.Height * 2);
             spriteBatch.Draw(deadTexture, backgroundNudge, screen, Color.White);
 
             foreach (ICell cell in Cells.Values)
