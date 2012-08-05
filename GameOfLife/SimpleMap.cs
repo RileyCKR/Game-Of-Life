@@ -176,6 +176,8 @@ namespace GameOfLife
 
         public void Draw(SpriteBatch spriteBatch, Camera camera, Rectangle screenBounds)
         {
+            spriteBatch.Begin();
+
             Point offset = new Point(-camera.Screen.X, -camera.Screen.Y);
             foreach (ICell cell in CellMap)
             {
@@ -204,6 +206,8 @@ namespace GameOfLife
                 Vector2 location = new Vector2(offset.X + (cell.Location.X * texture.Width), offset.Y + (cell.Location.Y * texture.Height));
                 spriteBatch.Draw(texture, location, null, Color.White);
             }
+
+            spriteBatch.End();
         }
     }
 }
