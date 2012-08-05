@@ -43,7 +43,7 @@ namespace GameOfLife
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, Rectangle screenBounds)
         {
             spriteBatch.Begin();
 

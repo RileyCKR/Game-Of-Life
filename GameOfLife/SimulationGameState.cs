@@ -115,10 +115,10 @@ namespace GameOfLife
             }
         }
 
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch, Rectangle screenBounds)
         {
-            Map.Draw(spriteBatch, Camera);
-            GUI.Draw(spriteBatch);
+            Map.Draw(spriteBatch, Camera, screenBounds);
+            GUI.Draw(spriteBatch, screenBounds);
         }
 
         private void SetupMap()

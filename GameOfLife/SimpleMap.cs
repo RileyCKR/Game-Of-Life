@@ -174,7 +174,7 @@ namespace GameOfLife
             return new Point(index % SideSize, index / SideSize);
         }
 
-        public void Draw(SpriteBatch spriteBatch, Camera camera)
+        public void Draw(SpriteBatch spriteBatch, Camera camera, Rectangle screenBounds)
         {
             Point offset = new Point(-camera.Screen.X, -camera.Screen.Y);
             foreach (ICell cell in CellMap)

@@ -29,6 +29,7 @@ namespace GameOfLife
             graphics.PreferredBackBufferHeight = 600;
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            this.Window.AllowUserResizing = true;
         }
 
         /// <summary>
@@ -87,7 +88,7 @@ namespace GameOfLife
         {
             GraphicsDevice.Clear(Color.Fuchsia);
 
-            SimulationState.Draw(gameTime, spriteBatch);
+            SimulationState.Draw(gameTime, spriteBatch, GraphicsDevice.Viewport.Bounds);
 
             base.Draw(gameTime);
         }

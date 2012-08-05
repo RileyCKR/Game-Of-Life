@@ -137,7 +137,7 @@ namespace GameOfLife
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch, Camera camera)
+        public void Draw(SpriteBatch spriteBatch, Camera camera, Rectangle screenBounds)
         {
             //Set sampler to tile sprites instead of stretching
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Opaque, SamplerState.LinearWrap, DepthStencilState.Default, RasterizerState.CullNone);
@@ -179,7 +179,7 @@ namespace GameOfLife
             backgroundNudge += new Vector2(-deadTexture.Width, -deadTexture.Height);
 
             //Draw the background screen
-            Rectangle screen = new Rectangle(0, 0, 800 + deadTexture.Width * 2, 600 + deadTexture.Height * 2);
+            Rectangle screen = new Rectangle(0, 0, screenBounds.Width + deadTexture.Width * 2, screenBounds.Height + deadTexture.Height * 2);
             spriteBatch.Draw(deadTexture, backgroundNudge, screen, Color.White);
 
             foreach (ICell cell in Cells.Values)
