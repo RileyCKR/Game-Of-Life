@@ -103,7 +103,7 @@ namespace GameOfLife
 
                 if (!inputState.MouseInputHandled && inputState.LeftMouseUp())
                 {
-                    Point clickedCell = Camera.GetCellPointOfClick(inputState.MousePosition);
+                    Point clickedCell = Camera.GetCellCoordinatesOfClick(inputState.MousePosition);
                     Map.FlipCell(clickedCell.X, clickedCell.Y);
                 }
             }

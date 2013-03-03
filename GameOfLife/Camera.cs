@@ -42,7 +42,7 @@ namespace GameOfLife
             }
         }
 
-        public Point GetCellPointOfClick(Point mouseClick)
+        public Point GetCellCoordinatesOfClick(Point mouseClick)
         {
             int cellSize;
             if (Zoom == 0)
@@ -66,12 +66,9 @@ namespace GameOfLife
                 cellSize = 1;
             }
 
-            int xRow = mouseClick.X / cellSize;
-            int yRow = mouseClick.Y / cellSize;
-            Point cellPoint = new Point(Screen.X / cellSize, Screen.Y / cellSize);
-            cellPoint.X = cellPoint.X + xRow;
-            cellPoint.Y = cellPoint.Y + yRow;
-            return cellPoint;
+            int xRow = (mouseClick.X + _Screen.X) / cellSize;
+            int yRow = (mouseClick.Y + _Screen.Y) / cellSize;
+            return new Point(xRow, yRow);
         }
 
         private void ZoomIn(Point mouseLocation)
