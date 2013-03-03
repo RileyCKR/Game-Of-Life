@@ -34,7 +34,7 @@ namespace GameOfLife
 
             if(inputState.MouseScrolledUp() || inputState.KeyDown(Keys.PageUp))
             {
-                ZoomIn();
+                ZoomIn(inputState.MousePosition);
             }
             else if (inputState.MouseScrolledDown() || inputState.KeyDown(Keys.PageDown))
             {
@@ -74,11 +74,12 @@ namespace GameOfLife
             return cellPoint;
         }
 
-        private void ZoomIn()
+        private void ZoomIn(Point mouseLocation)
         {
             if (Zoom > 0)
             {
                 Zoom--;
+                CenterCamera(mouseLocation);
             }
         }
 
@@ -88,6 +89,13 @@ namespace GameOfLife
             {
                 Zoom++;
             }
+        }
+
+        private void CenterCamera(Point location)
+        {
+            int width = _Screen.Width;
+            int height = _Screen.Height;
+
         }
     }
 }
