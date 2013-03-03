@@ -25,14 +25,12 @@ namespace GameOfLife
         int Ticks = 0;
         int TickRate = 10;
         GameState State = GameState.Paused;
-        InputState inputState;
         UserInterface GUI;
 
-        public SimulationGameState(Game game, InputState inputState)
+        public SimulationGameState(Game game)
         {
             this.Game = game;
-            this.inputState = inputState;
-            GUI = new SimulationUI(inputState);
+            GUI = new SimulationUI();
         }
 
         public void Initialize()
@@ -52,13 +50,13 @@ namespace GameOfLife
         /// checking for collisions, gathering input, and playing audio.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, InputState inputState)
         {
             Ticks++;
 
             if (this.Game.IsActive)
             {
-                GUI.Update();
+                GUI.Update(inputState);
 
                 UserInterfaceMessage guiMessage;
                 while (GUI.GetMessage(out guiMessage))

@@ -7,8 +7,8 @@ namespace GameOfLife
 {
     class SimulationUI : UserInterface
     {
-        public SimulationUI(InputState inputState)
-            : base(inputState)
+        public SimulationUI()
+            : base()
         {
         }
 

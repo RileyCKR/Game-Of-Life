@@ -18,14 +18,11 @@ namespace GameOfLife
 
     abstract class UserInterface
     {
-        private InputState inputState;
-
         public List<Control> Controls { get; set; }
         protected Queue<UserInterfaceMessage> MessageQueue { get; private set; }
 
-        public UserInterface(InputState inputState)
+        public UserInterface()
         {
-            this.inputState = inputState;
             this.Controls = new List<Control>();
             MessageQueue = new Queue<UserInterfaceMessage>();
         }
@@ -35,7 +32,7 @@ namespace GameOfLife
             
         }
 
-        public void Update()
+        public void Update(InputState inputState)
         {
             foreach (Control thisControl in Controls)
             {

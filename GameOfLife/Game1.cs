@@ -41,7 +41,7 @@ namespace GameOfLife
         protected override void Initialize()
         {
             InputState = new InputState();
-            SimulationState = new SimulationGameState(this, InputState);
+            SimulationState = new SimulationGameState(this);
             SimulationState.Initialize();
 
             base.Initialize();
@@ -75,7 +75,7 @@ namespace GameOfLife
         {
             InputState.Update();
 
-            SimulationState.Update(gameTime);
+            SimulationState.Update(gameTime, InputState);
 
             base.Update(gameTime);
         }
