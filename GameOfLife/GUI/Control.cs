@@ -16,6 +16,8 @@ namespace GameOfLife
 
     abstract class Control
     {
+        private bool ClickStartedHere = false;
+
         public event EventHandler OnClick;
 
         public Texture2D BackgroundTexture { get; set; }
@@ -42,29 +44,41 @@ namespace GameOfLife
 
             if (!inputState.MouseInputHandled && Position.Contains(inputState.MousePosition))
             {
+                inputState.MouseInputHandled = true;
+
+                if (inputState.LeftMouseDown())
+                {
+                    ClickStartedHere = true;
+                }
+
                 if (inputState.LeftMousePressed())
                 {
                     ControlState = ControlState.Clicked;
+                }
+                else if (inputState.LeftMouseUp())
+                {
+                    if (ClickStartedHere)
+                    {
+                        //Handle Click Event
+                        if (OnClick != null)
+                        {
+                            OnClick(this, EventArgs.Empty);
+                        }
+                    }
+                    else
+                    {
+                        //Don't handle event because it was a dragged click
+                    }
                 }
                 else
                 {
                     ControlState = ControlState.Hover;
                 }
-
-                inputState.MouseInputHandled = true;
             }
             else
             {
+                ClickStartedHere = false;
                 ControlState = ControlState.Inactive;
-            }
-
-            //Handle Click Event
-            if (LastControlState == ControlState.Clicked && ControlState != ControlState.Clicked)
-            {
-                if (OnClick != null)
-                {
-                    OnClick(this, EventArgs.Empty);
-                }
             }
         }
 
