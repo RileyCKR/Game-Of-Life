@@ -35,12 +35,12 @@ namespace GameOfLife
 
         public virtual void HandleInput(InputState inputState)
         {
-            foreach (Control thisControl in ChildControls)
-            {
-                thisControl.HandleInput(inputState);
-            }
-
             LastControlState = ControlState;
+
+            foreach (Control child in ChildControls)
+            {
+                child.HandleInput(inputState);
+            }
 
             if (!inputState.MouseInputHandled && Position.Contains(inputState.MousePosition))
             {
